@@ -11,6 +11,6 @@ var routing = require('./routes/router.js');
 // ...
 app.use('/', routing);
 app.listen(3001,function(){
+    
     console.log("server start")
-    console.log(process.env)
 })

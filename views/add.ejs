@@ -1,15 +1,16 @@
 <%- include('includes/header'); -%>
-    <h1>Add Product</h1>
-    <div class="container">
-        <label for="uname"><b>Product Name</b></label>
-        <input type="text" placeholder="Enter Product Name" name="uname" required>
-    
-        <label for="psw"><b>Price</b></label>
-        <input type="password" placeholder="Enter Price" name="psw" required>
-    
-        <button type="submit">Add</button>
-       
-      </div>
-    
+  <h1>Add Product</h1>
+  <div class="container">
+    <label for="uname"><b>Product Name</b></label>
+    <form action="/insert" method="post">
+      <input type="text" placeholder="Enter Product Name" name="name" required>
+
+      <label for="psw"><b>Price</b></label>
+      <input type="text" placeholder="Enter Price" name="price" required>
+
+      <button type="submit">Add</button>
     </form>
-    <%- include('includes/footer'); -%>
+  </div>
+
+  </form>
+  <%- include('includes/footer'); -%>
