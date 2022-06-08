@@ -1,4 +1,4 @@
-const { MongoClient, Object } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 const dbConnection = async function () {
   const client = new MongoClient(process.env.MONGO_URI);
   try {
@@ -13,4 +13,4 @@ const dbConnection = async function () {
 };
 
 // module.exports = dbConnection();
-module.exports = { dbConnection };
+module.exports = { dbConnection,ObjectId };

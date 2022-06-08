@@ -1,15 +1,24 @@
 <%- include('includes/header'); -%>
-    <h1>Edit Product</h1>
-    <div class="container">
-        <label for="uname"><b>Product Name</b></label>
-        <input type="text" placeholder="Enter Product Name" name="uname" required>
-    
-        <label for="psw"><b>Price</b></label>
-        <input type="password" placeholder="Enter Price" name="psw" required>
-    
-        <button type="submit">Add</button>
-       
+  <h1>Edit Product</h1>
+  <div class="container">
+    <%if (typeof success !="undefined" && success ) { %>
+      <div id="display-success">
+        <p>Product has been saved successfully</p>
       </div>
-    
-    </form>
-    <%- include('includes/footer'); -%>
+      <% } %>
+
+        <form action="/update/<%=product._id%>" method="post">
+          <label for="name"><b>Product Name</b></label>
+
+          <input type="text" placeholder="Enter Product Name" value="<%=product.name%>" name="name" required>
+
+          <label for="price"><b>Price</b></label>
+          <input type="text" placeholder="Enter Price" value="<%=product.price%>" name="price" required>
+
+          <button type="submit">Update</button>
+        </form>
+  </div>
+
+
+  </form>
+  <%- include('includes/footer'); -%>

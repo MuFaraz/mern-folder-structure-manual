@@ -1,15 +1,23 @@
 <%- include('includes/header'); -%>
-    <h1>Views Product</h1>
-    <div class="container">
-        <label for="uname"><b>Product Name</b></label>
-        <input type="text" placeholder="Enter Product Name" name="uname" required>
+ 
+    <h1>All product</h1>
 
-        <label for="psw"><b>Price</b></label>
-        <input type="password" placeholder="Enter Price" name="psw" required>
-
-        <button type="submit">Add</button>
-
-    </div>
-
-    </form>
+    <table id="customers">
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        <% product.forEach(function(pr){ %>
+            <tr>
+                <td><%= pr.name %></td>
+                <td><%= pr.price %></td>
+                <td> <a href="/edit/<%=pr._id%>" class="edit" data-toggle="modal">Edit</a>
+                    <a href="/delete/<%=pr._id%>" class="delete">Delete</i></a>
+                </td>
+            </tr>
+        <% }); %>
+        
+        
+    </table>
     <%- include('includes/footer'); -%>
