@@ -76,19 +76,10 @@ exports.update = (req, res) => {
         } else {
           res.redirect("/view");
         }
-        // console.log(result.updatedCount + ' document updated successfully!');
-        // res.redirect('/items');
+     
       }
     );
-    // await productCollections.find({}).toArray( (err, result) => {
-    //   if (err) throw err;
-    //   if (result.acknowledged) {
-    //     res.render("view", { product: result});
-    //     // res.render("login");
-    //   } else {
-    //     res.render("view", { product: result});
-    //   }
-    // });
+ 
   });
 };
 exports.view = (req, res) => {
