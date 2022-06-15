@@ -1,26 +1,6 @@
-// const { MongoClient, ServerApiVersion } = require('mongodb');
 const { dbConnection, ObjectId } = require("../database/connection.js");
-// const uri = "mongodb+srv://faraz:Adobe110@cluster0.i9hdb.mongodb.net/?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
+// const Product = require('../models/product.model')
 exports.index = (req, res) => {
-  client.connect(async (err) => {
-    if (err) throw err;
-    const userCollections = client.db("myDB").collection("UserCollection");
-    await userCollections.insertOne({ name: "faraz" }, (err, result) => {
-      if (err) throw err;
-      if (result.acknowledged) {
-        console.log("add");
-        // res.render("login");
-      } else {
-        console.log("not insert");
-        // res.render("login");
-      }
-    });
-    // client.close()
-  });
-
   res.render("login");
 };
 
@@ -28,7 +8,19 @@ exports.add = (req, res) => {
   res.render("add");
 };
 exports.insert = (req, res) => {
-  console.log(req.body);
+  
+//   const new_product = new Product({
+//     name:req.body.name,
+//     price:req.body.price
+//   })
+//   new_product.save(function(err,result){
+//     if (err){
+//         console.log(err);
+//     }
+//     else{
+//         console.log(result)
+//     }
+// })
   dbConnection().then(async function (client) {
     const productCollections = client
       .db("myDB")
@@ -38,7 +30,7 @@ exports.insert = (req, res) => {
       if (err) throw err;
       if (result.acknowledged) {
         res.render("add", { product: result, success: true });
-        // res.render("login");
+        
       } else {
         res.render("add", { product: result, success: false });
       }
@@ -72,7 +64,6 @@ exports.update = (req, res) => {
         if (err) throw err;
         if (result.acknowledged) {
           res.redirect("/view");
-          // res.render("login");
         } else {
           res.redirect("/view");
         }
@@ -88,7 +79,7 @@ exports.view = (req, res) => {
       .db("myDB")
       .collection("ProductCollection");
 
-    await productCollections.find({}).toArray((err, result) => {
+    await productCollections.find({price:{$lte:"102"}}).toArray((err, result) => {
       if (err) throw err;
       if (result.acknowledged) {
         res.render("view", { product: result });
