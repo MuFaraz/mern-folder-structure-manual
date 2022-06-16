@@ -25,7 +25,6 @@ exports.insert = (req, res) => {
     const productCollections = client
       .db("myDB")
       .collection("ProductCollection");
-
     await productCollections.insertOne(req.body, (err, result) => {
       if (err) throw err;
       if (result.acknowledged) {
@@ -47,7 +46,6 @@ exports.edit = (req, res) => {
       .toArray((err, result) => {
         if (err) throw err;
 
-        console.log("sadas", result);
         res.render("edit", { product: result[0] });
       });
   });
@@ -79,13 +77,15 @@ exports.view = (req, res) => {
       .db("myDB")
       .collection("ProductCollection");
 
-    await productCollections.find({price:{$lte:"102"}}).toArray((err, result) => {
+    await productCollections.find({}).toArray((err, result) => {
       if (err) throw err;
       if (result.acknowledged) {
-        res.render("view", { product: result });
+        res.status(200).send({product:result});
+        // res.render("view", { product: result });
         // res.render("login");
       } else {
-        res.render("view", { product: result });
+        res.status(200).send({product:result});
+        // res.render("view", { product: result });
       }
     });
   });
